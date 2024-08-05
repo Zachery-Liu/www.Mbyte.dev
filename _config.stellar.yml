@@ -69,7 +69,7 @@ site_tree:
     base_dir: blog # 只影响自动生成的页面路径
     menu_id: post # 未在 front-matter 中指定 menu_id 时，layout 为 post 的页面默认使用这里配置的 menu_id
     leftbar: recent # for categories/tags/archives
-    rightbar: welcome
+    rightbar: 
     nav_tabs:  # 近期发布 分类 标签 专栏 归档 and ...
       # '朋友文章': /friends/rss/
   # 博客专栏列表页配置
@@ -93,8 +93,6 @@ site_tree:
   # 博客专栏文章内页配置
   topic:
     menu_id: post
-    leftbar: related, recent
-    rightbar: toc
   # 文档内页配置
   wiki:
     menu_id: wiki # 未在 front-matter 中指定 menu_id 时，layout 为 wiki 的页面默认使用这里配置的 menu_id
@@ -236,8 +234,8 @@ comments:
   giscus:
     src: https://giscus.app/client.js
     data-repo: Zachery-Liu/blog-comments # [在此输入仓库]
-    data-repo-id: R_kgDOIze3Aw# [在此输入仓库 ID]
-    data-category: Announcements# [在此输入分类名]
+    data-repo-id: R_kgDOIze3Aw # [在此输入仓库 ID]
+    data-category: Announcements # [在此输入分类名]
     data-category-id: DIC_kwDOIze3A84ChZva
     data-mapping: title
     data-strict: 0
