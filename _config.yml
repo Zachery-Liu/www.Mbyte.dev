@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Mbyte
+title: MBYTE
 avatar: https://cdn.jsdelivr.net/gh/Zachery-Liu/chore@main/61861732.png
 favicon: https://cdn.jsdelivr.net/gh/Zachery-Liu/chore@main/61861732.png
 subtitle: '技术与生活的交织 | Tech & Life'
@@ -19,10 +19,10 @@ timezone: 'Asia/Hong_Kong'
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://www.mbyte.dev
-permalink: :year/:month/:day/:title/
+permalink: :year:month:day/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory

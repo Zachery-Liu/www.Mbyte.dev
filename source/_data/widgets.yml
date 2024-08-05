@@ -1,0 +1,26 @@
+welcome:
+  layout: markdown
+  title: '欢迎，旅行者：'
+  content: |
+    你好👋，我是 ZacheryLiu，
+    欢迎来我的博客做客！
+    有任何意见可以到留言板留言噢~
+
+  src:
+  linklist:
+    columns:
+    items:
+    - icon: default:tocomment
+      title: 立即前往
+      url: '/about/#comments'
+
+linklist:
+  layout: linklist
+  columns: 1 
+  items:
+    - icon: '<svg...></svg>' # 或者 icons.yml 中设置的 icon 名称
+      title: 关于
+      url: /about/
+    - icon: '<svg...></svg>'
+      title: 归档
+      url: /archives/

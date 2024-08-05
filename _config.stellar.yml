@@ -21,7 +21,7 @@ open_graph:
 ######## Sidebar ########
 # 左上角显示的 logo 区域，包含图标、大标题、副标题
 logo:
-  avatar: '[{config.avatar}](/about/)' # you can set avatar link in _config.yml or '[https://xxx.png](/about/)'
+  avatar: '[{config.avatar}](/about)' # you can set avatar link in _config.yml or '[https://xxx.png](/about/)'
   title: '[{config.title}](/)' # you can set html tag like: '[<img no-lazy height="32px" src="xxx"/>](/)'
   subtitle: '{config.subtitle}' # '文字 1 | 文字 2' (鼠标放上去会切换到文字 2)
 
@@ -49,11 +49,11 @@ menubar:
     #   icon: solar:planet-bold-duotone
     #   title: 探索
     #   url: /explore/
-    # - id: social
-    #   theme: '#F44336'
-    #   icon: solar:chat-square-like-bold-duotone
-    #   title: 社交
-    #   url: /friends/
+    - id: social
+      theme: '#F44336'
+      icon: solar:chat-square-like-bold-duotone
+      title: 社交
+      url: /friends/
 
 
 ######## Main ########
@@ -62,14 +62,14 @@ site_tree:
   # -- 列表类页面 -- #
   # 主页配置
   home:
-    leftbar: welcome, recent
-    rightbar: 
+    leftbar: recent
+    rightbar: welcome
   # 博客列表页配置
   index_blog:
     base_dir: blog # 只影响自动生成的页面路径
     menu_id: post # 未在 front-matter 中指定 menu_id 时，layout 为 post 的页面默认使用这里配置的 menu_id
-    leftbar: welcome, recent # for categories/tags/archives
-    rightbar: 
+    leftbar: recent # for categories/tags/archives
+    rightbar: welcome
     nav_tabs:  # 近期发布 分类 标签 专栏 归档 and ...
       # '朋友文章': /friends/rss/
   # 博客专栏列表页配置
@@ -93,6 +93,8 @@ site_tree:
   # 博客专栏文章内页配置
   topic:
     menu_id: post
+    leftbar: related, recent
+    rightbar: toc
   # 文档内页配置
   wiki:
     menu_id: wiki # 未在 front-matter 中指定 menu_id 时，layout 为 wiki 的页面默认使用这里配置的 menu_id
@@ -188,7 +190,7 @@ article:
   # 相关文章，需要安装插件 (for layout: post)
   # npm i hexo-related-popular-posts
   related_posts:
-    enable: true
+    enable: false
     max_count: 5
 
 search:
@@ -308,12 +310,18 @@ comments:
 ######## Footer ########
 footer:
   social:
+     # theme:
+      # icon: default:theme
+      # onclick: 'switchTheme()'
     github:
-      icon: '<img src="https://cdn.jsdelivr.net/gh/Zachery-Liu/blog-comments@main/github-fill.svg"/>'
+      icon: '<img src="https://cdn.simpleicons.org/github/black/white"/>'
       url: https://github.com/Zachery-Liu
     bilibili:
-      icon: '<img src="https://cdn.jsdelivr.net/gh/Zachery-Liu/blog-comments@main/icon_bilibili-circle.svg"/>'
+      icon: '<img src="https://cdn.simpleicons.org/bilibili/black/white"/>'
       url: https://space.bilibili.com/474705747
+    zhihu:
+      icon: 'https://cdn.simpleicons.org/zhihu/black/white'
+      url: https://www.zhihu.com/people/Zachery-Liu
     # music:
     #   icon: '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/3845874.svg"/>'
     #   url: /
@@ -323,12 +331,16 @@ footer:
     # comments:
     #   icon: '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/942ebbf1a4b91.svg"/>'
     #   url: /about/#comments
-    theme:
-      icon: default:theme
-      onclick: 'switchTheme()'
+
+    email:
+      icon: '<img src="https://cdn.simpleicons.org/maildotru/black/white"/>'
+      url: mailto:Zachery_Liu@Outlook.com
     cc:
-      icon: '<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"/>'
+      icon: '<img src="https://cdn.simpleicons.org/creativecommons/black/white"/>'
       url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+    hexo: 
+      icon: '<img src="https://cdn.simpleicons.org/hexo/black/white"/>'
+      url: https://xaoxuu.com/wiki/stellar/
   sitemap:
     # '博客':
     #   - '[近期](/)'
@@ -344,9 +356,11 @@ footer:
        # - '[关于本站](/)'
        # - '[GitHub](/)'
   content: | # 支持 Markdown 格式
-    <p id="hitokoto">
-    <a href="#" id="hitokoto_text">一言获取中...</a>
-    </p>
+    <!-- 输出 -->
+    <span id="ip_span"></span> | <span id="runtime_span"></span>
+    <!-- 一言 -->
+    <span id="hitokoto"><a href="#" id="hitokoto_text">一言获取中...</a></span> 
+    <!-- 一言获取 -->
     <script>
       fetch('https://v1.hitokoto.cn/?c=i')
       .then(response => response.json())
@@ -356,8 +370,34 @@ footer:
       hitokoto.innerText = data.hitokoto
       })
       .catch(console.error)
+    <!-- IP -->
     </script>
-    Powered By <a href="https://hexo.io/">Hexo</a> with theme <a href="https://xaoxuu.com/wiki/stellar/">Stellar</a>.
+    <script type="text/javascript">;
+                    function handleIpCallback(res) {
+                    returnCitySN = res
+                    ip_span.innerHTML = (returnCitySN["city"] || returnCitySN["province"]) + returnCitySN["isp"] + " " + returnCitySN["ip"];
+                }
+    </script>
+    <script type="text/javascript" src="https://ip.useragentinfo.com/jsonp?callback=handleIpCallback"></script>
+    <!-- 运行时间 -->
+    <script type="text/javascript">
+    function show_runtime() {
+        window.setTimeout("show_runtime()", 1000);
+        X = new Date("8/4/2024 22:00:00");
+        Y = new Date();
+        T = (Y.getTime() - X.getTime());
+        M = 24 * 60 * 60 * 1000;
+        a = T / M;
+        A = Math.floor(a);
+        b = (a - A) * 24;
+        B = Math.floor(b);
+        c = (b - B) * 60;
+        C = Math.floor((b - B) * 60);
+        D = Math.floor((c - C) * 60);
+        runtime_span.innerHTML = "本站已运行 " + A + "天" + B + "小时" + C + "分" + D + "秒"
+    }
+    show_runtime();
+    </script>
   # 主题用户越多，开发者维护和更新的积极性就越高，如果您喜欢本主题，请在适当的位置显示主题信息和仓库链接以表支持。
 
 
